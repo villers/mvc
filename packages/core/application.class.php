@@ -1,0 +1,46 @@
+<?php
+
+class Application
+{
+	public static $config, $data;
+
+	public static function run()
+	{
+		require_once(PATH_CLASS .'autoloader.class.php');
+		$loader = Autoloader::getInstance()
+			->addDirectory(PATH_CLASS)
+			->addDirectory(PATH_CONTROLLER)
+			->addDirectory(PATH_MODEL)
+			->addEntireDirectory(PATH_VENDOR);
+
+		/* Load router*/
+		Router::run();
+
+		/* Load default language */
+		Translation::initialize(DEFAULT_LANGUAGE);
+
+		/* Sql Or Array Connection */
+		self::$config = require_once(PATH_APP."config.php");
+
+		try
+		{
+			// Permet de vérifier que la class existe puis initialise l'instentie
+			$controller = new ReflectionClass(ucfirst(strtolower(Router::$router["controller"])));
+			$call_controller = $controller->newInstanceArgs(array(Router::$router, Router::$param, Router::$baseUrl));
+
+			// Permet de vérifier que la method existe et qu'elle ne provient pas du controller principal
+			$refl = new ReflectionMethod($call_controller, Router::$router["action"]);
+			if($refl->class == "Controller")
+				throw new Exception();
+
+			// Appel la méthod de la class récupéré par le routeur.
+			call_user_func_array(array($call_controller, Router::$router["action"]), array());
+		}
+		catch (Exception $e)
+		{
+			Controller::loadNewController("Error", "code_404");
+		}
+
+	}
+}
+?>
