@@ -31,7 +31,7 @@ class Application
 
 			// Permet de vérifier que la method existe et qu'elle ne provient pas du controller principal
 			$refl = new ReflectionMethod($call_controller, Router::$router["action"]);
-			if($refl->class == "Controller")
+			if(($refl->class == "Controller") || (!$refl->isPublic()))
 				throw new Exception();
 
 			// Appel la méthod de la class récupéré par le routeur.

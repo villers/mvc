@@ -6,10 +6,5 @@ class Home extends Controller
 	{
 		$this->render();
 	}
-
-	public function teste()
-	{
-		$this->render();
-	}
 }
 ?>

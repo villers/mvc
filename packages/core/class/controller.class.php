@@ -32,6 +32,11 @@ class Controller
 		echo $this->twig->render("{$this->data["router"]["controller"]}/{$this->data["router"]["action"]}.twig", $this->data);
 	}
 
+	public function renderFile($file)
+	{
+		echo $this->twig->render("{$this->data["router"]["controller"]}/{$file}.twig", $this->data);
+	}
+
 	private function getTwigEnvironement()
 	{
 		Twig_Autoloader::register();
