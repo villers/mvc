@@ -29,12 +29,12 @@ class Controller
 
 	public function render()
 	{
-		echo $this->twig->render("{$this->data["router"]["controller"]}/{$this->data["router"]["action"]}.twig", $this->data);
+		echo $this->twig->render(strtolower("{$this->data["router"]["controller"]}/{$this->data["router"]["action"]}.twig"), $this->data);
 	}
 
 	public function renderFile($file)
 	{
-		echo $this->twig->render("{$this->data["router"]["controller"]}/{$file}.twig", $this->data);
+		echo $this->twig->render(strtolower("{$this->data["router"]["controller"]}/{$file}.twig"), $this->data);
 	}
 
 	private function getTwigEnvironement()
