@@ -16,7 +16,6 @@ define("PATH_PUBLIC", PATH_BASE ."public/");
 define("DEFAULT_CONTROLLER", "home");
 define("DEFAULT_ACTION", "index");
 define("MAX_PARAMETERS", 5);
-define("DEFAULT_TEMPLATE", "default");
 define("DEFAULT_LANGUAGE", "fr");
 
 /* run the application */
