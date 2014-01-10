@@ -19,8 +19,9 @@ class Application
 		/* Load default language */
 		Translation::initialize(DEFAULT_LANGUAGE);
 
-		/* Sql Or Array Connection */
-		self::$config = require_once(PATH_APP."config.php");
+		/* Import des config et des données statiques */
+		self::$config 	= require_once(PATH_APP."config.php");
+		self::$data 	= require_once(PATH_APP."data.php");
 
 		try
 		{

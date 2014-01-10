@@ -9,8 +9,9 @@ class Controller
 		/* Main Data */
 		$this->data_push(
 			array(
-				"router" => $router,
-				"param" => $param
+				"router"	=> $router,
+				"param"		=> $param,
+				"data"		=> Application::$data
 			)
 		);
 
