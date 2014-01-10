@@ -1,65 +1,67 @@
 {% extends "index.twig" %}
 
 {% block content %}
-<!-- One Content Blocks -->
-<div class="row">
-	<div class="large-12 columns">
-		<h3>params: {{param[0]}},{{param[1]}},{{param[2]}},{{param[3]}},{{param[4]}}</h3>
-	</div>
-</div>
-
-<!-- Call to Action Panel -->
-<div class="row">
-	<div class="large-12 columns">
-
-		<div class="panel">
-			<div class="row">
-				<form onsubmit="return sendSummoner(this)">
-					<div class="row">
-						<div class="small-6 small-centered large-centered columns">
-							<div class="row collapse">
-								<div class="small-10 columns">
-									<input type="search" name="name" placeholder="Summoner Name">
-								</div>
-								<div class="small-2 columns">
-									<input type="submit" class="button postfix" value="Search">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="small-6 small-centered large-centered columns">
-							<div class="row collapse">
-								<div class="small-12 columns">
-									<label>Choose Your Server</label>
-									<input type="radio" name="server" value="na" id="na" checked><label for="na">na</label>
-									<input type="radio" name="server" value="euw" id="euw"><label for="euw">euw</label>
-									<input type="radio" name="server" value="eune" id="eune"><label for="eune">eune</label>
-									<input type="radio" name="server" value="oce" id="oce"><label for="oce">oce</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+	<!-- One Content Blocks -->
+	<div class="row">
+		<div class="large-12 columns">
+			<h3>params: {{param[0]}},{{param[1]}},{{param[2]}},{{param[3]}},{{param[4]}}</h3>
 		</div>
-
 	</div>
-</div>
+
+	<!-- Call to Action Panel -->
+	<div class="row">
+		<div class="large-12 columns">
+
+			<div class="panel">
+				<div class="row">
+					<form id="search-summoner">
+						<div class="row">
+							<div class="small-6 small-centered large-centered columns">
+								<div class="row collapse">
+									<div class="small-10 columns">
+										<input type="search" name="name" placeholder="Summoner Name">
+									</div>
+									<div class="small-2 columns">
+										<input type="submit" class="button postfix" value="Search">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-6 small-centered large-centered columns">
+								<div class="row collapse">
+									<div class="small-12 columns" id="radio">
+										<label>Choose Your Server</label>
+										<input type="radio" name="server" value="na" id="na" {% if router.action in ["na", "index"] %}checked {% endif %}><label for="na">na</label>
+										<input type="radio" name="server" value="euw" id="euw" {% if router.action == "euw" %}checked{% endif %}><label for="euw">euw</label>
+										<input type="radio" name="server" value="eune" id="eune" {% if router.action == "eune" %}checked{% endif %}><label for="eune">eune</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascript %}
-{{ parent() }}
-<script type="text/javascript">
-	function sendSummoner(formElm)
-	{
-		var server = na;
-		for(var i = 0; i < formElm.server.length; i++) {
-		    if(formElm.server[i].checked) server = formElm.server[i].value;   
-		}
+	{{ parent() }}
+	<script type="text/javascript">
+		$(document).ready(function($)
+		{
+			$("#search-summoner").submit(function()
+			{
+				/*
+				 * var server = $(this).find("input[name=server]:checked").val();
+				 * var summoner = $(this).find("input[name=name]").val();
+				 */
+				window.location ="{{baseurl}}{{router.controller}}/"+$(this).find("input[name=server]:checked").val()+"/"+$(this).find("input[name=name]").val();
+				return false;
+			});
 
-		window.location="{{baseurl}}{{router.controller}}/"+server+"/"+formElm.name.value;
-		return false;
-	}
-</script>
+		});
+	</script>
 {% endblock %}
