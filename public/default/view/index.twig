@@ -1,61 +1,63 @@
 {% spaceless %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>{{title}}</title>
+<!doctype html>
+<html class="no-js" lang="fr">
+	<head>
+		<meta charset="utf-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<title>{{title}}</title>
+		{% block css %}
+			<link rel="stylesheet" href="{{assets}}css/foundation.css" >
+			<script src="{{assets}}js/modernizr.js"></script>
+		{% endblock %}
+	</head>
+	<body>
+		<div class="row">
+			<div class="large-3 columns">
+				<h1><img src="http://placehold.it/400x100&amp;text=Logo" alt="bla" ></h1>
+			</div>
+			<div class="large-9 columns">
+				<ul class="right button-group">
+					<li><a href="{{baseurl}}" class="button">home</a></li>
+					<li><a href="{{baseurl}}home/teste/param1/param2/param3/param4/param5" class="button">home/teste</a></li>
+					<li><a href="#" class="button">Link 3</a></li>
+					<li><a href="#" class="button">Link 4</a></li>
+				</ul>
+			</div>
+		</div>
 
-    {% block css %}
-        <link href="{{assets}}css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{assets}}css/bootstrap-theme.min.css" rel="stylesheet">
-        <!--[if lt IE 9]>
-          <script src="{{assets}}js/html5shiv.js"></script>
-          <script src="{{assets}}js/respond.min.js"></script>
-        <![endif]-->
-    {% endblock %}
-  </head>
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Bootstrap theme</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{{baseurl}}">Home</a></li>
-            <li><a href="{{baseurl}}home/teste/param1/param2/param3">home/teste</a></li>
-            <li><a href="{{baseurl}}user">User</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    {% block content %}
-    {% endblock %}
+		<!-- End Header and Nav -->
 
-    {% block javascript %}
-        <script src="{{assets}}js/jquery.min.js"></script>
-        <script src="{{assets}}js/bootstrap.min.js"></script>
-    {% endblock %}
-  </body>
+		{% block content %}
+	    {% endblock %}
+
+		<!-- Footer -->
+
+		<footer class="row">
+			<div class="large-12 columns">
+				<hr />
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; Copyright tous pourris Corporate.</p>
+					</div>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<li><a href="#">Link 1</a></li>
+							<li><a href="#">Link 2</a></li>
+							<li><a href="#">Link 3</a></li>
+							<li><a href="#">Link 4</a></li>
+						</ul>
+					</div>
+				</div>
+			</div> 
+		</footer>
+
+		{% block javascript %}
+			<script src="{{assets}}js/jquery.js"></script>
+			<script src="{{assets}}js/foundation.min.js"></script>
+			<script>
+				$(document).foundation();
+			</script>
+		{% endblock %}
+	</body>
 </html>
 {% endspaceless %}

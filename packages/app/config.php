@@ -11,6 +11,6 @@ return array(
 	"PDO_PASSWORD" => "",
 
 	/* Cache */
-	"CACHE_TWIG" => true
+	"CACHE_TWIG" => false
 );
 ?>

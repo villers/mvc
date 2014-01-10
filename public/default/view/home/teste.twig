@@ -1,13 +1,36 @@
 {% extends "index.twig" %}
 
 {% block content %}
-    <div class="container theme-showcase">
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Hello, world TESTE!</h1>
-        <h3>params: {{param[0]}},{{param[1]}},{{param[2]}},{{param[3]}},{{param[4]}},{{param[5]}}</h3>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-      </div>
-    </div>
+<!-- One Content Blocks -->
+<div class="row">
+	<div class="large-12 columns">
+		<h3>params: {{param[0]}},{{param[1]}},{{param[2]}},{{param[3]}},{{param[4]}}</h3>
+	</div>
+</div>
+
+<!-- Call to Action Panel -->
+<div class="row">
+	<div class="large-12 columns">
+
+		<div class="panel">
+			<div class="row">
+				<form method="GET" action="{{baseurl}}home/teste">
+					<div class="row">
+						<div class="small-6 small-centered large-centered columns">
+							<div class="row collapse">
+								<div class="small-10 columns">
+									<input type="search" name="name" placeholder="Summoner Name">
+								</div>
+								<div class="small-2 columns">
+									<input type="submit" class="button postfix" value="Search">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
 {% endblock %}
