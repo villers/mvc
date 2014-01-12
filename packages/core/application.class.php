@@ -39,6 +39,7 @@ class Application
 		}
 		catch (Exception $e)
 		{
+			print $e->getmessage();
 			Controller::loadNewController("Error", "code_404");
 		}
 

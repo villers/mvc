@@ -9,6 +9,9 @@ class Summoner extends Controller
 
 	public function na()
 	{
+		// teste
+		$image = new StaticDataService2();
+		echo $image->getStaticImage("champion", "Shaco");
 		$this->loadServer(__FUNCTION__);
 	}
 
