@@ -1,6 +1,6 @@
 <?php
 
-class StaticDataService2 Extends Service
+class StaticDataService Extends Service
 {
 	private $apiHost = 'http://ddragon.leagueoflegends.com';
 	private $version = array();
@@ -15,8 +15,8 @@ class StaticDataService2 Extends Service
 
 	function __construct()
 	{
-        $this->version = $this->get($this->apiHost . "/realms/na.json");
-    }
+		$this->version = $this->get($this->apiHost . "/realms/na.json");
+	}
 
 	public function __call ($function, $args = NULL)
 	{
