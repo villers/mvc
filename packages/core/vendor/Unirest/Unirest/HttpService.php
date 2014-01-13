@@ -2,12 +2,15 @@
 
 class HttpService
 {
-	public function get($url)
+	public function get($url, $key = null)
 	{
-		switch(Unirest::get($url)->code)
+
+		$response = (empty($key)) ? Unirest::get($url) : Unirest::get($url,array("X-Mashape-Authorization" => $key),null);
+
+		switch($response->code)
 		{
 			case 200:
-				return Unirest::get($url)->body;
+				return $response->body;
 				break;
 
 			default:
@@ -15,7 +18,7 @@ class HttpService
 			case 400: // Bad Request
 			case 401: // Bad URL
 			case 500: // Internal Server Error
-				return array("error" => Unirest::get($url)->code);
+				return array("error" => $response->code);
 				break;
 		}
 	}

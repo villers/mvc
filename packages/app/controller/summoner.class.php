@@ -24,9 +24,12 @@ class SummonerController extends Controller
 
 	private function loadServer($server)
 	{
-		$LeagueAPIWrapper = new LeagueAPIWrapper($server);
-		$summoner = $LeagueAPIWrapper->getSummoner(19116763, 'masteries');
-		var_dump($summoner);
+		if(isset($this->data['param'][0]))
+		{
+			$LeagueAPIWrapper = new LeagueAPIWrapper($server);
+			$summoner = $LeagueAPIWrapper->getSpectatorGameInfo($this->data['param'][0]);
+			var_dump($summoner);
+		}
 
 		$this->renderFile("index");
 	}

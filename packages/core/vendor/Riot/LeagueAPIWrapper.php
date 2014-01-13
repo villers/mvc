@@ -7,6 +7,8 @@ class LeagueAPIWrapper Extends HttpService
 	const API_URL_1_3 = 'http://prod.api.pvp.net/api/lol/{region}/v1.3/';
 	const API_URL_2_2 = 'http://prod.api.pvp.net/api/lol/{region}/v2.2/';
 	const API_KEY = 'ae41c074-340c-4c93-8a1a-12300ffd135c';
+
+	const API_URL_MASHAPE = 'https://community-league-of-legends.p.mashape.com/api/v1.0/{region}/summoner/';
 	const API_KEY_MASHAPE = '90gwEFjQKj5EBjV4kt8mCKhCSKcg7A0s';
 
 	private $region;
@@ -68,6 +70,11 @@ class LeagueAPIWrapper Extends HttpService
 	public function getTeam($id)
 	{
 		return $this->request(self::API_URL_2_1 . 'team/by-summoner/' . $id);
+	}
+
+	public function getSpectatorGameInfo($id)
+	{
+		return $this->get(str_replace('{region}', $this->region, self::API_URL_MASHAPE . 'retrieveInProgressSpectatorGameInfo/' . $id), self::API_KEY_MASHAPE);
 	}
 
 	private function request($call)
