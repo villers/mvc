@@ -25,8 +25,11 @@ class Application
 
 		try
 		{
+			// Récupère le nom de la classe du Controller
+			$className = ucfirst(strtolower(Router::$router["controller"]))."Controller";
+
 			// Permet de vérifier que la class existe puis initialise l'instentie
-			$controller = new ReflectionClass(ucfirst(strtolower(Router::$router["controller"])));
+			$controller = new ReflectionClass($className);
 			$call_controller = $controller->newInstanceArgs(array(Router::$router, Router::$param, Router::$baseUrl));
 
 			// Permet de vérifier que la method existe et qu'elle ne provient pas du controller principal

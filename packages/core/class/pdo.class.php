@@ -15,7 +15,9 @@ class PDO2 extends PDO
             {
                 $pdo = sprintf("%s:host=%s;dbname=%s", Application::$config["PDO_DRIVER"], Application::$config["PDO_HOST"],Application::$config["PDO_DATABASE"]);
                 self::$_instance = new PDO($pdo, Application::$config["PDO_USER"], Application::$config["PDO_PASSWORD"]);
-            } catch (PDOException $e) {}
+            } catch (PDOException $e) {
+                die("sql connection error");
+            }
 
         return self::$_instance; 
     }

@@ -1,6 +1,6 @@
 <?php
 
-class StaticDataService Extends Service
+class StaticDataService Extends HttpService
 {
 	private $apiHost = 'http://ddragon.leagueoflegends.com';
 	private $version = array();
@@ -11,7 +11,7 @@ class StaticDataService Extends Service
 		'spell',
 		'mastery',
 		'rune'
-	);
+		);
 
 	function __construct()
 	{
@@ -38,9 +38,9 @@ class StaticDataService Extends Service
 	}
 }
 /*
-	$image = new StaticDataService();
-	print_r($image->items("3.15.5"));
-	print_r($image->items());
-	print_r($image->getStaticImage("champions", "Shaco"));
+		$image = new StaticDataService();
+		print_r($image->items("3.15.5"));
+		print_r($image->items());
+		print_r($image->getStaticImage("champions", "Shaco"));
 */
 ?>

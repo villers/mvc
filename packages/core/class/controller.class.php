@@ -64,7 +64,7 @@ class Controller
 			"action" 		=> $method,
 		);
 
-		$selectedController = new ReflectionClass($class);
+		$selectedController = new ReflectionClass($class."Controller");
 		call_user_func_array(array($selectedController->newInstanceArgs(array($router, array(), Router::$baseUrl)), $router["action"]), array());
 	}
 }

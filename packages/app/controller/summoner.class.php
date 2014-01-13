@@ -1,17 +1,14 @@
 <?php
 
-class Summoner extends Controller
+class SummonerController extends Controller
 {
 	public function index()
 	{
-		$this->render();
+		$this->na();
 	}
 
 	public function na()
 	{
-		// teste
-		$image = new StaticDataService();
-		echo $image->getStaticImage("champion", "Shaco");
 		$this->loadServer(__FUNCTION__);
 	}
 
@@ -27,6 +24,10 @@ class Summoner extends Controller
 
 	private function loadServer($server)
 	{
+		$LeagueAPIWrapper = new LeagueAPIWrapper($server);
+		$summoner = $LeagueAPIWrapper->getSummoner(19116763, 'masteries');
+		var_dump($summoner);
+
 		$this->renderFile("index");
 	}
 }

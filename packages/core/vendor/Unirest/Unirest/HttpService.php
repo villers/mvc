@@ -1,6 +1,6 @@
 <?php
 
-class Service
+class HttpService
 {
 	public function get($url)
 	{
