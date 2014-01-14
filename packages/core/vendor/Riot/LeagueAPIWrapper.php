@@ -18,24 +18,24 @@ class LeagueAPIWrapper Extends HttpService
 		$this->region = $region;
 	}
 
-	public function getChampion()
+	public function getChampion($freeToPlay = 0)
 	{
-		return $this->request(self::API_URL_1_1 . 'champion');
+		return ($freeToPlay)? $this->request(self::API_URL_1_1 . 'champion?freeToPlay=true&') : $this->request(self::API_URL_1_1 . 'champion?');
 	}
 
 	public function getGame($id)
 	{
-		return $this->request(self::API_URL_1_3 . 'game/by-summoner/' . $id . '/recent');
+		return $this->request(self::API_URL_1_3 . 'game/by-summoner/' . $id . '/recent?');
 	}
 
 	public function getLeague($id)
 	{
-		return $this->request(self::API_URL_2_2 . 'league/by-summoner/' . $id);
+		return $this->request(self::API_URL_2_2 . 'league/by-summoner/' . $id . '?');
 	}
 
-	public function getStats($id,$option='summary') // or ranked
+	public function getStats($id,$option='summary', $season = "SEASON3") // or ranked
 	{
-		return $this->request(self::API_URL_1_2 . 'stats/by-summoner/' . $id . '/' . $option);
+		return $this->request(self::API_URL_1_2 . 'stats/by-summoner/' . $id . '/' . $option . '?season=' . $season . '&');
 	}
 
 	public function getSummoner($id,$option=null)
@@ -64,22 +64,22 @@ class LeagueAPIWrapper Extends HttpService
 				break;
 		}
 
-		return $this->request(self::API_URL_1_2 . $call);
+		return $this->request(self::API_URL_1_2 . $call . '?');
 	}
 
 	public function getTeam($id)
 	{
-		return $this->request(self::API_URL_2_1 . 'team/by-summoner/' . $id);
+		return $this->request(self::API_URL_2_2 . 'team/by-summoner/' . $id . '?');
 	}
 
-	public function getSpectatorGameInfo($id)
+	public function getSpectatorGameInfo($call)
 	{
-		return $this->get(str_replace('{region}', $this->region, self::API_URL_MASHAPE . 'retrieveInProgressSpectatorGameInfo/' . $id), self::API_KEY_MASHAPE);
+		return $this->get(str_replace('{region}', $this->region, self::API_URL_MASHAPE . 'retrieveInProgressSpectatorGameInfo/' . urlencode($call)), self::API_KEY_MASHAPE);
 	}
 
 	private function request($call)
 	{
-		return $this->get(str_replace('{region}', $this->region, $call) . '?api_key=' . self::API_KEY); 
+		return $this->get(str_replace('{region}', $this->region, $call) . 'api_key=' . self::API_KEY); 
 	}
 }
 ?>

@@ -27,8 +27,8 @@ class SummonerController extends Controller
 		if(isset($this->data['param'][0]))
 		{
 			$LeagueAPIWrapper = new LeagueAPIWrapper($server);
-			$summoner = $LeagueAPIWrapper->getSpectatorGameInfo($this->data['param'][0]);
-			var_dump($summoner);
+			$spectator = $LeagueAPIWrapper->getSpectatorGameInfo($this->data['param'][0]);
+			var_dump($spectator);
 		}
 
 		$this->renderFile("index");
